@@ -1,4 +1,4 @@
-# Keyauth-Redeem-Bot
+# Keyauth-Redeem-Bot -- When redeeming if the key is active it will give you a role!
 
 ## ***Pictures***
 
