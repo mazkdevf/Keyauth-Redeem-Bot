@@ -3,6 +3,11 @@
 - **This uses "SellerAPI" so you need keyauth.com - Seller-Sub**
 
 ## ***UpdateLOG***
+- **2.3-PreBeta <-- 13.10.2021**
+```
+Added "ruser" License for Automatic Generated Username + password.
+```
+
 - **0.2-Beta <-- 12.10.2021**
 ## ***Features***
 - **Fast Redeem System**
@@ -14,12 +19,11 @@
 - **Admin Options to Generate "Keys/Licenses"**
 ## ***Pictures***
 
-![1](https://github.com/mazk5145/imgs/blob/main/lataa1.png?raw=true) 
+![1](https://github.com/mazk5145/imgs/blob/main/2.3prebeta4.png?raw=true) 
 
-![2](https://github.com/mazk5145/imgs/blob/main/lataa2.png?raw=true) 
+![2](https://github.com/mazk5145/imgs/blob/main/2.3prebeta2.png?raw=true) 
 
-![3](https://github.com/mazk5145/imgs/blob/main/lataa3.png?raw=true)
-
+![3](https://github.com/mazk5145/imgs/blob/main/2.3prebeta3.png?raw=true)
 
 ## ***How to setup?***
 
