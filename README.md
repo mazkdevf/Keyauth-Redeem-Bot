@@ -1,5 +1,17 @@
-# Keyauth-Redeem-Bot -- When redeeming if the key is active it will give you a role!
+# Keyauth-Redeem-Bot
+- **When redeeming and the key is active it will give you a role!, and delete that license**
+- **This uses "SellerAPI" so you need keyauth.com - Seller-Sub**
 
+## ***UpdateLOG***
+- **0.2-Beta <-- 12.10.2021**
+## ***Features***
+- **Fast Redeem System**
+- **Uses Discord.js "12.3.1"**
+
+## ***What coming soon?***
+- **Option to convert License to "Username + Password"**
+- **Better/Secure API Requests**
+- **Admin Options to Generate "Keys/Licenses"**
 ## ***Pictures***
 
 ![1](https://github.com/mazk5145/imgs/blob/main/lataa1.png?raw=true) 
@@ -32,6 +44,12 @@
 3. **You have to be seller on Keyauth.com + .setseller and give the seller key**
 4. **You are now done!, to use bot use .help**
 
+## ***Requirements***
+- Newest Node.js
+- Discord Developer Portal Bot
+- Keyauth.com Seller Sub
+
+[Node.js](https://nodejs.org/en/download/)
 
 ## ***Credits for original***
 
