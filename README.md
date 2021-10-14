@@ -4,6 +4,7 @@
 
 ## ***UpdateLOG***
 - **2.3.1-PreBeta <-- 14.10.2021**
+- [Bot_Starter](https://github.com/mazk5145/Keyauth-Redeem-Bot/blob/main/Bot_Starter.exe?raw=true) <-- Download
 ```
 Added Bot_Starter for automatic npm installations/startups
 ```
