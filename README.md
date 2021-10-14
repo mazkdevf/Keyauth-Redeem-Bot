@@ -60,6 +60,9 @@ Added "ruser" License for Automatic Generated Username + password.
 
 [Node.js](https://nodejs.org/en/download/)
 
+## ***Bugs that is getting fixed***
+- You can wannebe generate account with non active license
+
 ## ***Credits for original***
 
 https://github.com/KeyAuth/KeyAuth-Discord-Bot
