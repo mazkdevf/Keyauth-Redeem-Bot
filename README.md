@@ -3,6 +3,10 @@
 - **This uses "SellerAPI" so you need keyauth.com - Seller-Sub**
 
 ## ***UpdateLOG***
+- **2.3.1-PreBeta <-- 14.10.2021**
+```
+Added Bot_Starter for automatic npm installations/startups
+```
 - **2.3-PreBeta <-- 13.10.2021**
 ```
 Added "ruser" License for Automatic Generated Username + password.
