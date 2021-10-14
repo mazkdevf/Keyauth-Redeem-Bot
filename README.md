@@ -19,7 +19,8 @@ Added "ruser" License for Automatic Generated Username + password.
 - **Uses Discord.js "12.3.1"**
 
 ## ***What coming soon?***
-- **Option to convert License to "Username + Password"**
+- **Option to reset Password if u have old2auth what bot created**
+- **More language Supports currenty: (EN)**
 - **Better/Secure API Requests**
 - **Admin Options to Generate "Keys/Licenses"**
 ## ***Pictures***
