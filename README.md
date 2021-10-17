@@ -39,9 +39,9 @@ Added "ruser" License for Automatic Generated Username + password.
 - **Admin Options to Generate "Keys/Licenses"**
 ## ***Pictures***
 
-![1](https://github.com/mazk5145/imgs/blob/main/2.3prebeta4.png?raw=true) 
+![1](https://github.com/mazk5145/imgs/blob/main/keyauthbotimgs/PreBeta2.4_1.png?raw=true) 
 
-![2](https://github.com/mazk5145/imgs/blob/main/2.3prebeta2.png?raw=true) 
+![2](https://github.com/mazk5145/imgs/blob/main/keyauthbotimgs/PreBeta2.4_2.png?raw=true) 
 
 ![3](https://github.com/mazk5145/imgs/blob/main/2.3prebeta3.png?raw=true)
 
@@ -63,8 +63,7 @@ Added "ruser" License for Automatic Generated Username + password.
 
 ## ***When you have finished those***
 
-1. **npm install**
-2. **Node index.js or node .**
+1. **Download Bot Starter and run it**
 3. **You have to be seller on Keyauth.com + .setseller and give the seller key**
 4. **You are now done!, to use bot use .help**
 
