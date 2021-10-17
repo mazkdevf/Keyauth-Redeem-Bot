@@ -3,6 +3,20 @@
 - **This uses "SellerAPI" so you need keyauth.com - Seller-Sub**
 
 ## ***UpdateLOG***
+- **2.4-PreBeta <-- 17.10.2021**
+- [Bot_Starter V2](https://github.com/mazk5145/dev/blob/main/Bot_Starter.exe?raw=true) <-- Download
+```
+Updated Bot Starter to V2.
+NEW Config Generator
+Automatic NPM Install / Run
+---------------------------------
+
+What got fixed?
+
+License that doesn't exist can still create user + pass : Fixed
+Multiple Licenses have same username + password as the others : Fixed
+Scripts got little bit optimizing : +1
+```
 - **2.3.1-PreBeta <-- 14.10.2021**
 - [Bot_Starter](https://github.com/mazk5145/Keyauth-Redeem-Bot/blob/main/Bot_Starter.exe?raw=true) <-- Download
 ```
