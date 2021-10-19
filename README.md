@@ -34,6 +34,7 @@ Added "ruser" License for Automatic Generated Username + password.
 
 ## ***What coming soon?***
 - **Option to reset Password if u have old2auth what bot created**
+- **Secure Logs to bot**
 - **More language Supports currenty: (EN)**
 - **Better/Secure API Requests**
 - **Admin Options to Generate "Keys/Licenses"**
