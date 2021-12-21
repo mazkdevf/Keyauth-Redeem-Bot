@@ -1,3 +1,9 @@
+# **UPDATE COMING WHEN READY**
+- Sorry for wait time, school have been busy.
+- ***I Promise that i will make more features future.***
+
+
+
 <img src="https://github.com/mazk5145/imgs/blob/main/keyauthredeembot.jpg?raw=true" alt="" data-canonical-src="https://github.com/mazk5145/imgs/blob/main/keyauthredeembot.jpg?raw=trueg" width="1280" height="490" />
 
 
