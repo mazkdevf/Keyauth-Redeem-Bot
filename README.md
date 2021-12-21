@@ -1,6 +1,4 @@
-# **UPDATE COMING WHEN READY**
-- Sorry for wait time, school have been busy.
-- ***I Promise that i will make more features future.***
+- Probably making this bot to CSHARP <--
 
 
 
