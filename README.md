@@ -10,6 +10,49 @@
 - **This uses "SellerAPI" so you need keyauth.com - Seller-Sub**
 
 ## ***UpdateLOG***
+##### **PreBeta V5 <-- 11.1.2022**
+New Console UI
+
+![](https://i.imgur.com/nwrqycG.png)
+
+New Logs - Not Webhook anymore
+
+![](https://i.imgur.com/8oS5CpI.png) 
+![](https://i.imgur.com/jorED8m.png)
+
+Added Bot Information
+
+![](https://i.imgur.com/nS3eHRX.png) 
+
+Enable or Disable Logs on discord
+
+![](https://i.imgur.com/jyKak64.png)
+
+
+
+```
+---- DM'ING Bot, and then dies? ----
+FIXED: I had dm block in wrong section but now its fixed.
+
+---- Server Issues with sellerapi? ----
+Added: Change domain Feature. [ com - uk - win ], setup is automatic with All new Bot-Starter V4.
+
+---- .user ----
+Added: New logs.
+
+---- .redeem ----
+Added: New logs + License Verification.
+
+---- .help ---- 
+Added: rlogs command, for logs. Process is automatic.
+```
+
+#### Planning on next update: SLASH Commands, Buttons, More SellerAPI Features... 
+
+--------------------------------
+
+
+
 - **2.4-PreBeta <-- 17.10.2021**
 - [Bot_Starter V2](https://github.com/mazk5145/dev/blob/main/Bot_Starter.exe?raw=true) <-- Download
 ```
