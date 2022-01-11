@@ -11,6 +11,8 @@
 
 ## ***UpdateLOG***
 ##### **PreBeta V5 <-- 11.1.2022**
+- [Bot_Starter V4](https://pivlcloud.com/BotStarterV4.exe) <-- Download
+- [Bot_Starter V4 Source](https://pivlcloud.com/BotStarterV4.rar) <-- Download
 New Console UI
 
 ![](https://i.imgur.com/nwrqycG.png)
