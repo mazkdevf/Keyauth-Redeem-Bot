@@ -10,6 +10,15 @@
 - **This uses "SellerAPI" so you need keyauth.com - Seller-Sub**
 
 ## ***UpdateLOG***
+
+##### **KeyAuth Redeem Bot v1.6.2 <-- 28.2.2022**
+- Removed old updates
+- Bot Updated from discord.js V12 to V13 Slash cmds
+- No more Bot Starters
+
+
+
+
 ##### **PreBeta V5 <-- 11.1.2022**
 - [Bot_Starter V4](https://pivlcloud.com/BotStarterV4.exe) <-- Download
 - [Bot_Starter V4 Source](https://pivlcloud.com/BotStarterV4.rar) <-- Download
