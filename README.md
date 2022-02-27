@@ -16,6 +16,8 @@
 - Bot Updated from discord.js V12 to V13 Slash cmds
 - No more Bot Starters
 
+- Change 18-23 Lines and you are done :)
+
 ![](photos/pic1.png)
 ![](photos/pic4.png)
 ![](photos/pic2.png)
