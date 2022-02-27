@@ -16,6 +16,10 @@
 - Bot Updated from discord.js V12 to V13 Slash cmds
 - No more Bot Starters
 
+![](photos/pic1.png)
+![](photos/pic4.png)
+![](photos/pic2.png)
+![](photos/pic3.png)
 
 
 
