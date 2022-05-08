@@ -3,6 +3,7 @@ const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
 const { Client, Intents, Collection, MessageEmbed } = require("discord.js");
 
+/// Discord Client Configuration ///
 const client = new Client({
     messageCacheMaxSize: 1000,
     messageCacheLifetime: 43200,
@@ -15,12 +16,18 @@ const client = new Client({
     ]
 })
 
-const Token = ""; // Discord Token - https://discord.com/developers/applications
-client.domain = "win"; // com - uk - win | win works best
-client.customer_id = ""; // What user get when /redeem <key> is used
+/// Discord Token and Server - Guild ID ///
+let conf = {
+    token: "", // Discord Bot Token (https://discord.com/developers/applications/)
+    GuildID: "", // GuildID Where Bot will put commands.
+}
+
+
+/// Client Setup ///
+client.domain = "win"; // KeyAuth Domain [win Currently]
+client.customer_id = ""; // What user get when /redeem <key> have been used
 client.admin_role_id = ""; // Admin Role id to /rlogs + to access logs channel.
 
-const DEV_GuildID = ""; // ServerID Where the bot will go.
 
 const commandFiles = fs.readdirSync("./commands").filter(file => file.endsWith(".js"))
 const commands = [];
@@ -35,7 +42,7 @@ for (const file of commandFiles) {
 
 client.on("error", console.error);
 
-client.once('ready', async() => {
+client.once('ready', async () => {
     console.clear();
     logo();
     sysTitle("KeyAuth Redeem Bot - Started | https://github.com/mazk5145");
@@ -45,14 +52,14 @@ client.once('ready', async() => {
 
     const rest = new REST({
         version: "9"
-    }).setToken(Token);
+    }).setToken(conf.token);
 
     (async () => {
         try {
-            await rest.put(Routes.applicationGuildCommands(CLIENT_ID, DEV_GuildID), {
+            await rest.put(Routes.applicationGuildCommands(CLIENT_ID, conf.GuildID), {
                 body: commands
             })
-            console.log(`\x1b[32m[CMDS] \x1b[0mCommands have been setup for GuildID: ${DEV_GuildID}`)
+            console.log(`\x1b[32m[CMDS] \x1b[0mCommands have been setup for GuildID: ${conf.GuildID}`)
         } catch (err) {
             console.error(err);
         }
@@ -61,7 +68,7 @@ client.once('ready', async() => {
     client.user.setPresence({
         activities: [
             {
-                name: "KeyAuth.win",
+                name: "KeyAuth Redeem Bot - github.com/mazk5145",
                 type: "WATCHING",
             }
         ],
@@ -77,20 +84,19 @@ client.on('interactionCreate', async interaction => {
     if (!command) return;
 
     const errorembed = new MessageEmbed()
-    .setAuthor({ name: "Interaction Failed" })
-    .setColor("RED")
-    .setTimestamp()
-    .setFooter({ text: "KeyAuth Redeem Bot v1.6.2" })
+        .setAuthor({ name: "Interaction Failed" })
+        .setColor("RED")
+        .setTimestamp()
+        .setFooter({ text: "KeyAuth Redeem Bot v1.6.2" })
 
 
     try {
         await command.execute(interaction, client);
-    } catch(err) {
+    } catch (err) {
         if (err) console.error(err);
 
         await interaction.reply({
             embeds: [errorembed],
-            //content: 'Interaction Failed.',
             ephemeral: true
         })
     }
@@ -110,13 +116,12 @@ function logo() {
 }
 
 // Change Console Title
-function sysTitle(title)
-{
-  process.stdout.write(
-    String.fromCharCode(27) + "]0;" + title + String.fromCharCode(7)
-  );
+function sysTitle(title) {
+    process.stdout.write(
+        String.fromCharCode(27) + "]0;" + title + String.fromCharCode(7)
+    );
 }
 
-client.login(Token);
+client.login(conf.token);
 
-    
+

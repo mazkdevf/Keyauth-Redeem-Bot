@@ -1,29 +1,32 @@
-# Keyauth-Redeem-Bot | DJS V13
-#### **Showcase**
-![](photos/pic4.png)
-![](photos/pic1.png)
-![](photos/pic2.png)
-![](photos/pic3.png)
+## KeyAuth Redeem Bot - V13
 
-#### ***How to setup?***
+Created for application resellers/sellers so users can redeem licenses to get role or user and password from the key.
 
-##### Create config.json file and fill these.
+<details>
+<summary>Showcase Pictures</summary>
+  
+![](photos/pic4.png "Logs")
+![](photos/pic1.png "When user redeemed")
+![](photos/pic2.png "License redeemed")
+![](photos/pic3.png "Logging enabled")
+</details>
 
-```json
-{
-  "token": "",
-  "domain": "win",
-  "admin_role_id": "",
-  "customer_role_id": ""
-}
+###### Requirements
 
+```md
+Latest NodeJS
+Discord Bot
+KeyAuth Seller Plan / Subscription
 ```
 
-#### ***Requirements***
-###### Latest Node.JS
-###### Discord Developer Portal Bot
-###### Keyauth.win Seller Subscription / Plan
+###### Setup
 
-#### ***Credits***
-
-##### https://keyauth.win - https://github.com/keyauth
+```md
+#1: Install the Latest Version of the Main Branch
+#2: Open folder/src folder
+#3: Drag files inside that to any folder
+#4: Open Index.js with the code editor of your choice
+#5: Change 20 and 28-29 lines.
+#6: open cmd to that folder and run this npm install
+#7: then you can run the bot with node . or node filename.js
+```
