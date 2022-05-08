@@ -11,7 +11,7 @@ Created for application resellers/sellers so users can redeem licenses to get ro
 ![](photos/pic3.png "Logging enabled")
 </details>
 
-###### Requirements
+###### Requirements
 
 ```md
 Latest NodeJS
