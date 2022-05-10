@@ -21,6 +21,15 @@ KeyAuth Seller Plan / Subscription
 
 ###### Setup
 
+###### Discord Developer Portal
+`https://discord.com/api/oauth2/authorize?client_id=<CLIENTID>&permissions=8&scope=bot%20applications.commands`
+```js
+#1: When inviting bot use this but replace <CLIENTID> ^^^^ with your bot ID
+#2: When you have done inviting do this step on discord oauth bot tab: https://i.imgur.com/lZvyONH.png
+#3: And bot should now have permission to put commands on that server.
+```
+
+###### Discord Bot Source
 ```md
 #1: Install the Latest Version of the Main Branch
 #2: Open folder/src folder
