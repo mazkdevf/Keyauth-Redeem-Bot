@@ -11,6 +11,13 @@ Created for application resellers/sellers so users can redeem licenses to get ro
 ![](photos/pic3.png "Logging enabled")
 </details>
 
+###### Bot Commands
+`/redeem <key/license>` will give user role with that key.
+`/ruser <key/license> [OPTIONAL <username> <password>]` If optionals not used it will create random ones, otherwise will create account with ur choices
+`/rlogs` Create logging channel for KeyAuth Redeem Bot
+`/help` Shows basic help things
+`/setseller` Set up KeyAuth Seller Plan Sellerkey.
+
 ###### Requirements
 
 ```md
