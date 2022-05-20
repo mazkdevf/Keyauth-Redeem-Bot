@@ -25,7 +25,7 @@ let conf = {
 
 /// Client Setup ///
 client.domain = "win"; // KeyAuth Domain [win Currently]
-client.customer_id = ""; // What user get when /redeem <key> have been used
+client.customer_id = ""; // What user get when /redeem <key> have been used visit redeem.js if you want to add more roles.
 client.admin_role_id = ""; // Admin Role id to /rlogs + to access logs channel.
 
 
@@ -44,7 +44,7 @@ client.on("error", console.error);
 
 client.once('ready', async () => {
     console.clear();
-    logo();
+    await protyperxdd(logo(), 0);
     sysTitle("KeyAuth Redeem Bot - Started | https://github.com/mazk5145");
     console.log(`\x1b[33m[DiscordJS] \x1b[0mBot Started - ${client.user.tag}`)
 
@@ -87,7 +87,7 @@ client.on('interactionCreate', async interaction => {
         .setAuthor({ name: "Interaction Failed" })
         .setColor("RED")
         .setTimestamp()
-        .setFooter({ text: "KeyAuth Redeem Bot v1.6.2" })
+        .setFooter({ text: "KeyAuth Redeem Bot v3.0.2" })
 
 
     try {
@@ -102,24 +102,38 @@ client.on('interactionCreate', async interaction => {
     }
 });
 
-//Console Logo
 function logo() {
-    console.log();
-    console.log("\x1b[35m");
-    console.log("                       ██╗  ██╗███████╗██╗   ██╗ █████╗ ██╗   ██╗████████╗██╗  ██╗██████╗ ██████╗ ");
-    console.log("                       ██║ ██╔╝██╔════╝╚██╗ ██╔╝██╔══██╗██║   ██║╚══██╔══╝██║  ██║██╔══██╗██╔══██╗");
-    console.log("                       █████╔╝ █████╗   ╚████╔╝ ███████║██║   ██║   ██║   ███████║██████╔╝██████╔╝");
-    console.log("                       ██╔═██╗ ██╔══╝    ╚██╔╝  ██╔══██║██║   ██║   ██║   ██╔══██║██╔══██╗██╔══██╗");
-    console.log("                       ██║  ██╗███████╗   ██║   ██║  ██║╚██████╔╝   ██║   ██║  ██║██║  ██║██████╔╝");
-    console.log("                       ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ");
-    console.log("\x1b[0m\n");
+    var lol = `
+    \x1b[37m:::  === :::===== \x1b[34m::: === \x1b[37m:::====  :::  === :::==== :::  === :::====  :::==== 
+    \x1b[37m::: ===  :::      \x1b[34m::: === \x1b[37m:::  === :::  === :::==== :::  === :::  === :::  ===
+    \x1b[34m======   ======    =====  ======== ===  ===   ===   ======== =======  ======= 
+    \x1b[37m=== ===  ===      \x1b[34m  ===   \x1b[37m===  === ===  ===   ===   ===  === === ===  ===  ===
+    \x1b[37m===  === ======== \x1b[34m  ===   \x1b[37m===  ===  ======    ===   ===  === ===  === =======
+    \n\n`;
+    return lol;
 }
+
 
 // Change Console Title
 function sysTitle(title) {
     process.stdout.write(
         String.fromCharCode(27) + "]0;" + title + String.fromCharCode(7)
     );
+}
+
+// Sleep
+async function sleep(ms) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+    });
+}
+
+// Typerwriter
+async function protyperxdd(text, ms = 20) {
+    for (const c of text) {
+        process.stdout.write(c);
+        await sleep(ms);
+    }
 }
 
 client.login(conf.token);

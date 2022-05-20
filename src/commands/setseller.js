@@ -6,7 +6,7 @@ const Discord = require('discord.js');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("setseller")
-        .setDescription("Sets The seller key")
+        .setDescription("Set up the sellerkey for bot.")
         .addStringOption((option) =>
             option
                 .setName("sellerkey")
@@ -15,7 +15,9 @@ module.exports = {
         ),
     async execute(interaction, client) {
 
-        let sellerkey = interaction.options.getString("sellerkey")
+        let sellerkey = await interaction.options.getString("sellerkey")
+
+        await interaction.deferReply({ ephemeral: true });
 
         fetch(`https://keyauth.` + client.domain + `/api/seller/?sellerkey=${sellerkey}&type=setseller&format=text`)
             .then(res => res.text())
@@ -23,10 +25,10 @@ module.exports = {
                 if (text == "Seller Key Successfully Found") {
                     db.fetch(`token_${interaction.guild.id}`)
                     db.set(`token_${interaction.guild.id}`, sellerkey)
-                    interaction.reply({ embeds: [new Discord.MessageEmbed().setTitle('Seller Key Successfully Set!').setColor("GREEN").setTimestamp()], ephemeral: true })
+                    interaction.editReply({ embeds: [new Discord.MessageEmbed().setTitle('Seller Key Successfully Set!').setColor("GREEN").setTimestamp()], ephemeral: true })
                 }
                 else {
-                    interaction.reply({ embeds: [new Discord.MessageEmbed().setTitle('Seller Key Not Found!').addField("Where do I find seller key?", "In [Seller Settings](https://keyauth.win/dashboard/seller/settings/)").setColor("RED").setTimestamp()], ephemeral: true })
+                    interaction.editReply({ embeds: [new Discord.MessageEmbed().setTitle('Seller Key Not Found!').addField("Where do I find seller key?", "In [Seller Settings](https://keyauth.win/dashboard/seller/settings/)").setColor("#2a2152").setTimestamp()], ephemeral: true })
                 }
             })
     },

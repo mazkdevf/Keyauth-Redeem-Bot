@@ -4,27 +4,37 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("rlogs")
-        .setDescription("Logging for keyauth redeem bot"),
+        .setDescription("Enable logging for KeyAuth Redeem Bot"),
 
     async execute(interaction, client) {
 
-        const channel = interaction.guild.channels.cache.find(channel => channel.name === 'prebeta-logs');
+        await interaction.deferReply({ ephemeral: true });
+
+        const channel = await interaction.guild.channels.cache.find(channel => channel.name === 'prebeta-logs');
         if (channel) {
             console.log(`[RLOGS] ${interaction.member.user.id} tryed to create Logging channel, but it already exists.`);
 
             const embed = new MessageEmbed()
                 .setDescription(`<@${interaction.member.user.id}>, ${channel} **Already Exists.** \n\n**If you don't want to log anymore just delete: ** ${channel}.`);
 
-            interaction.reply({
+            interaction.editReply({
                 embeds: [embed],
                 ephemeral: true,
             })
 
             return false;
         } else {
-            console.log("[RLOGS] Creating Logging Channel");
+            if (isEmpty(client.admin_role_id)) {
+                interaction.editReply({
+                    embeds: [new MessageEmbed().setDescription(`**Admin role haven't been set up yet, Go to** **index.js** **and Set it up.**`).setColor("#2a2152").setFooter({ text: "KeyAuth Redeem Bot v3.0.2"}).setTimestamp()],
+                    ephemeral: true,
+                })
+                return false;
+            } 
+            console.log("[RLOGS] Creating Logging Channel...");
 
-            interaction.guild.channels.create("PreBeta-Logs", {
+
+            await interaction.guild.channels.create("PreBeta-Logs", {
                 type: "text",
                 permissionOverwrites: [
                     {
@@ -37,16 +47,16 @@ module.exports = {
                         deny: ['VIEW_CHANNEL'],
                     },
                 ],
-            })
+            });
 
-            const embed = new MessageEmbed()
-                .setTitle("Hello, I have successfully made your logging channel :)");
-
-            interaction.reply({
-                embeds: [embed],
+            interaction.editReply({
+                embeds: [new MessageEmbed().setDescription(`**Okay, now the channel is created :) for <@&${client.admin_role_id}>**`).setColor("#2a2152").setFooter({ text: "KeyAuth Redeem Bot v3.0.2"}).setTimestamp()],
                 ephemeral: true,
-            })
-
+            });
         }
     },
 };
+
+function isEmpty(str) {
+    return (!str || str.length === 0 );
+}
