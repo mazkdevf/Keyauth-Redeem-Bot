@@ -2,24 +2,6 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const Discord = require("discord.js");
 const fetch = require('node-fetch')
 const db = require('quick.db');
-const { MessageActionRow, Modal, TextInputComponent } = require('discord.js');
-
-async function generate(count = 8) {
-    let password = ''
-    while (password.length < count) {
-        password += Math.random().toString(36).substr(2)
-    }
-    return password.substr(0, count)
-}
-
-async function generaterandomname(length) {
-    var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var result = '';
-    for (var i = 0; i < length; i++) {
-        result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
-    }
-    return result;
-}
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -52,14 +34,17 @@ module.exports = {
         let username = await interaction.options.getString('username');
         let password = await interaction.options.getString('password');
 
-        if (isEmpty(username) || isEmpty(password)) {
+        if (isEmpty(username)) {
             username = await generaterandomname(10);
+        };
+
+        if (isEmpty(password)) {
             password = await generate();
-        }
+        };
 
         let un = username;
         let pw = password;
-        
+
         await interaction.deferReply({ ephemeral: true });
 
         function checkResponseStatus(res) {
@@ -75,36 +60,55 @@ module.exports = {
 
                 if (channel) {
                     channel.send({
-                        embeds: [new Discord.MessageEmbed().setAuthor({ name: "Wrong Key ALERT" }).addField('License:', "```" + `${key}` + "```", inline = false).addField('Discord:', interaction.member.user.username, inline = true).addField('DiscordID:', "```" + interaction.member.user.username + "```", inline = true).setColor("#2a2152").setFooter({ text: "KeyAuth Redeem Bot v1.6.2" }).setTimestamp()]
+                        embeds: [new Discord.MessageEmbed().setAuthor({ name: "Wrong Key ALERT" }).addField('License:', "```" + `${key}` + "```", inline = false).addField('Discord:', interaction.member.user.username, inline = true).addField('DiscordID:', "```" + interaction.member.user.username + "```", inline = true).setColor("#2a2152").setFooter({ text: "KeyAuth Redeem Bot v3.0.2" }).setTimestamp()]
                     });
                 }
             }
         }
 
         async function genaccforlicense(interaction) {
-            fetch(`https://keyauth.` + client.domain + `/api/seller/?sellerkey=${sellerkey}&type=activate&user=${un}&key=${key}&pass=${pw}&format=text`)
-                .then(res => res.text())
-                .then(text => {
-                    //await interaction.editReply('Pong!');
-                    interaction.editReply({
-                        embeds: [new Discord.MessageEmbed().setTitle('License Successfully Activated!').setFooter({ text: "KeyAuth Redeem Bot v3.0.2" }).addField('Username:', "```" + un + "```").addField('Password', "```" + pw + "```").addField('License:', "```" + `${key}` + "```").setColor("#2a2152").setTimestamp()],
-                        ephemeral: true,
-                    })
+            fetch(`https://keyauth.` + client.domain + `/api/seller/?sellerkey=${sellerkey}&type=activate&user=${un}&key=${key}&pass=${pw}&format=json`)
+                .then(res => res.json())
+                .then(json => {
+                    if (json.success) {
 
-                    fetch(`https://keyauth.` + client.domain + `/api/seller/?sellerkey=${sellerkey}&type=info&key=${key}`)
-                        .then(res => res.json())
-                        .then(json => {
-                            const channel = interaction.guild.channels.cache.find(channel => channel.name === 'prebeta-logs');
+                        const FirstSub = json.info.subscriptions.subscriptions[0];
+                        const DaysFromLicense = prettySeconds(FirstSub.timeleft);
+                        const SubName = FirstSub.subscription;
 
-                            if (channel) {
-                                channel.send({
-                                    embeds: [new Discord.MessageEmbed().setAuthor({ name: "License Redeemed ALERT" }).addField('License:', "```" + `${key}` + "```", inline = false).addField('Username:', "```" + un + "```", true).addField('Password', "```" + pw + "```", true).addField(`License Expiry:`, "```" + `${json['expiry']}` + "```").addField('Level:', "```" + `${json['level']}` + "```").addField('Created By:', "```" + `${json['createdby']}` + "```").addField('Created On:', "```" + `${json['creationdate']}` + "```").addField('Discord:', "```" + interaction.member.user.username + "```", inline = true).addField('DiscordID:', "```" + interaction.member.user.id + "```", inline = true).setColor("GREEN").setFooter({ text: "KeyAuth Redeem Bot v1.6.2" }).setTimestamp()],
-                                    ephemeral: false,
-                                })
-                            }
-                        })
+                        fetch(`https://keyauth.` + client.domain + `/api/seller/?sellerkey=${sellerkey}&type=deluser&user=${un}`).then(res => res.json())
+                            .then(json => {
+                                if (json.success) {
+                                    fetch(`https://keyauth.` + client.domain + `/api/seller/?sellerkey=${sellerkey}&type=adduser&user=${un}&sub=${SubName}&expiry=${DaysFromLicense}&pass=${pw}`)
+                                        .then(res => res.json()).then(json => {
+                                            if (json.success) {
+                                                interaction.editReply({
+                                                    embeds: [new Discord.MessageEmbed().setTitle('License Successfully Activated!').setFooter({ text: "KeyAuth Redeem Bot v3.0.2" }).addField('Username:', "```" + un + "```").addField('Password', "```" + pw + "```").addField('License:', "```" + `${key}` + "```").addField('Expiry:', "```" + DaysFromLicense + " Days```").setColor("#2a2152").setTimestamp()],
+                                                    ephemeral: true,
+                                                });
 
-                    disableoldlicense();
+                                                disableoldlicense();
+                                            } else {
+                                                interaction.editReply({
+                                                    embeds: [new Discord.MessageEmbed().setTitle(json.message).setColor("#2a2152")],
+                                                    ephemeral: true,
+                                                });
+                                            }
+                                        });
+                                } else {
+                                    interaction.editReply({
+                                        embeds: [new Discord.MessageEmbed().setTitle('Something went wrong').setColor("#2a2152")],
+                                        ephemeral: true,
+                                    });
+                                }
+                            });
+                    } else {
+                        interaction.editReply({
+                            embeds: [new Discord.MessageEmbed().setTitle(json.message).setColor("#2a2152")],
+                            ephemeral: true
+                        });
+                        return false;
+                    }
                 })
         }
 
@@ -117,6 +121,56 @@ module.exports = {
     },
 };
 
+//* Check if string / variable is empty or null
 function isEmpty(str) {
-    return (!str || str.length === 0 );
+    return (!str || str.length === 0);
+}
+
+//* Seconds to Days - original: https://www.npmjs.com/package/pretty-seconds
+function prettySeconds(seconds) {
+    let prettyString = ''
+    let data = []
+
+    if (typeof seconds === 'number') {
+        data = quantify(data, 'day', parseInt(fix10(seconds / 86400)))
+
+        prettyString = data;
+    }
+
+    return prettyString;
+}
+
+function fix10(number) {
+    return number.toFixed(10)
+}
+
+function quantify(data, unit, value, allowZero) {
+    if (value || (allowZero && !value)) {
+        if (value > 1 || value < -1 || value === 0) {
+            unit += 's'
+        }
+
+        data.push(value)
+    }
+
+    return data
+}
+
+
+//* Username + Password Generators
+async function generate(count = 8) {
+    let password = ''
+    while (password.length < count) {
+        password += Math.random().toString(36).substr(2)
+    }
+    return password.substr(0, count)
+}
+
+async function generaterandomname(length) {
+    var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var result = '';
+    for (var i = 0; i < length; i++) {
+        result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+    }
+    return result;
 }
