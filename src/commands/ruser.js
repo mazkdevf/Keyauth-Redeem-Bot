@@ -3,6 +3,8 @@ const Discord = require("discord.js");
 const fetch = require('node-fetch')
 const db = require('quick.db');
 
+var sendOnDMS = false; // Change this to true, if you want that the redeemed account details will be send on DMS
+
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("ruser")
@@ -46,6 +48,11 @@ module.exports = {
         let pw = password;
 
         await interaction.deferReply({ ephemeral: true });
+
+        interaction.editReply({
+            embeds: [new Discord.MessageEmbed().setAuthor({ name: `Redeeming your account...` }).setColor("#2a2152")],
+            ephemeral: true,
+        });
 
         function checkResponseStatus(res) {
             if (res.ok) {
@@ -92,12 +99,28 @@ module.exports = {
                                                     });
                                                 }
 
+                                                if (sendOnDMS) {
+                                                    interaction.editReply({
+                                                        embeds: [new Discord.MessageEmbed().setTitle('License Have been redeemed, please check your dms').setColor("#2a2152")],
+                                                    });
 
-
-                                                interaction.editReply({
-                                                    embeds: [new Discord.MessageEmbed().setTitle('License Successfully Activated!').setFooter({ text: "KeyAuth Redeem Bot v3.0.2" }).addField('Username:', "```" + un + "```").addField('Password', "```" + pw + "```").addField('License:', "```" + `${key}` + "```").addField('Expiry:', "```" + DaysFromLicense + " Days```").setColor("#2a2152").setTimestamp()],
-                                                    ephemeral: true,
-                                                });
+                                                    interaction.member.send({
+                                                        embeds: [new Discord.MessageEmbed().setTitle('License Successfully Activated!').setFooter({ text: "KeyAuth Redeem Bot v3.0.2" }).addField('Username:', "```" + un + "```").addField('Password', "```" + pw + "```").addField('License:', "```" + `${key}` + "```").addField('Expiry:', "```" + DaysFromLicense + " Days```").setColor("#2a2152").setTimestamp()],
+                                                        ephemeral: true,
+                                                    }).catch(error => {
+                                                        if (error.code === 50007) {
+                                                            interaction.editReply({
+                                                                embeds: [new Discord.MessageEmbed().setAuthor({ name: "DMS Closed so i will give here. " }).setTitle('License Successfully Activated!').setFooter({ text: "KeyAuth Redeem Bot v3.0.2" }).addField('Username:', "```" + un + "```").addField('Password', "```" + pw + "```").addField('License:', "```" + `${key}` + "```").addField('Expiry:', "```" + DaysFromLicense + " Days```").setColor("#2a2152").setTimestamp()],
+                                                                ephemeral: true,
+                                                            });
+                                                        }
+                                                    });
+                                                } else {
+                                                    interaction.editReply({
+                                                        embeds: [new Discord.MessageEmbed().setTitle('License Successfully Activated!').setFooter({ text: "KeyAuth Redeem Bot v3.0.2" }).addField('Username:', "```" + un + "```").addField('Password', "```" + pw + "```").addField('License:', "```" + `${key}` + "```").addField('Expiry:', "```" + DaysFromLicense + " Days```").setColor("#2a2152").setTimestamp()],
+                                                        ephemeral: true,
+                                                    });
+                                                }
 
                                                 disableoldlicense();
                                             } else {
@@ -185,4 +208,10 @@ async function generaterandomname(length) {
         result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
     }
     return result;
+}
+
+async function sleep(ms) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+    });
 }
