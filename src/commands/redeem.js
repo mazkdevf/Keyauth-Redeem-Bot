@@ -23,6 +23,11 @@ module.exports = {
 
         await interaction.deferReply({ ephemeral: true });
 
+        interaction.editReply({
+            embeds: [new Discord.MessageEmbed().setTitle('Redeeming...').setColor("#2a2152")],
+            ephemeral: true,
+        });
+
         async function checkResponseStatus(res) {
             if (res.ok) {
                 giveroletouser();
@@ -53,6 +58,16 @@ module.exports = {
 
             if (role) {
                 //GIVE ROLE
+
+
+                try {
+                    await interaction.guild.members.cache.get(interaction.member.id).roles.add(role);
+                } catch (err) {
+                    console.log(err);
+                }
+
+
+
                 await interaction.guild.members.cache.get(interaction.member.id).roles.add(role);
 
                 //REPLY
