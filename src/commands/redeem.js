@@ -42,7 +42,7 @@ module.exports = {
 
                 if (channel) {
                     channel.send({
-                        embeds: [new Discord.MessageEmbed().setAuthor({ name: "Wrong Key ALERT" }).addField('License:', "```" + `${key}` + "```", inline = false).addField('Discord:', message.author, inline = true).addField('DiscordID:', "```" + message.author + "```", inline = true).setColor("#2a2152").setFooter({ text: "KeyAuth Redeem Bot v1.6.2" }).setTimestamp()]
+                        embeds: [new Discord.MessageEmbed().setAuthor({ name: "Wrong Key ALERT" }).addField('License:', "```" + `${key}` + "```", inline = false).addField('Discord:', "```" + interaction.member.user.username + "#" + interaction.member.user.discriminator + "```", inline = true).addField('DiscordID:', "```" + interaction.member.user.id + "```", inline = true).setColor("#2a2152").setFooter({ text: "KeyAuth Redeem Bot v3.0.2" }).setTimestamp()]
                     });
                 }
             }
