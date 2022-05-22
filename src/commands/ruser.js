@@ -60,7 +60,7 @@ module.exports = {
 
                 if (channel) {
                     channel.send({
-                        embeds: [new Discord.MessageEmbed().setAuthor({ name: "Wrong Key ALERT" }).addField('License:', "```" + `${key}` + "```", inline = false).addField('Discord:', interaction.member.user.username, inline = true).addField('DiscordID:', "```" + interaction.member.user.username + "```", inline = true).setColor("#2a2152").setFooter({ text: "KeyAuth Redeem Bot v3.0.2" }).setTimestamp()]
+                        embeds: [new Discord.MessageEmbed().setAuthor({ name: "Wrong Key ALERT" }).addField('License:', "```" + `${key}` + "```", inline = false).addField('Discord:', "```" + interaction.member.user.username + "```", inline = true).addField('DiscordID:', "```" + interaction.member.user.id + "```", inline = true).setColor("#2a2152").setFooter({ text: "KeyAuth Redeem Bot v3.0.2" }).setTimestamp()]
                     });
                 }
             }
@@ -82,6 +82,18 @@ module.exports = {
                                     fetch(`https://keyauth.` + client.domain + `/api/seller/?sellerkey=${sellerkey}&type=adduser&user=${un}&sub=${SubName}&expiry=${DaysFromLicense}&pass=${pw}`)
                                         .then(res => res.json()).then(json => {
                                             if (json.success) {
+
+
+                                                //* Logging
+                                                const channel = interaction.guild.channels.cache.find(channel => channel.name === 'prebeta-logs');
+                                                if (channel) {
+                                                    channel.send({
+                                                        embeds: [new Discord.MessageEmbed().setAuthor({ name: "License Redeemed" }).addField('License:', "```" + `${key}` + "```", false).addField('Username:', "```" + un + "```").addField('Password', "```" + pw + "```").addField('Discord:', "```" + interaction.member.user.username + "```", inline = true).addField('DiscordID:', "```" + interaction.member.user.id + "```", inline = true).setColor("#2a2152").setFooter({ text: "KeyAuth Redeem Bot v3.0.2" }).setTimestamp()]
+                                                    });
+                                                }
+
+
+
                                                 interaction.editReply({
                                                     embeds: [new Discord.MessageEmbed().setTitle('License Successfully Activated!').setFooter({ text: "KeyAuth Redeem Bot v3.0.2" }).addField('Username:', "```" + un + "```").addField('Password', "```" + pw + "```").addField('License:', "```" + `${key}` + "```").addField('Expiry:', "```" + DaysFromLicense + " Days```").setColor("#2a2152").setTimestamp()],
                                                     ephemeral: true,
