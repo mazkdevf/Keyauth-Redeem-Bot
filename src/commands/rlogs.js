@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders");
-const { MessageEmbed } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, Colors } = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -14,7 +13,7 @@ module.exports = {
         if (channel) {
             console.log(`[RLOGS] ${interaction.member.user.id} tryed to create Logging channel, but it already exists.`);
 
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
                 .setDescription(`<@${interaction.member.user.id}>, ${channel} **Already Exists.** \n\n**If you don't want to log anymore just delete: ** ${channel}.`);
 
             interaction.editReply({
@@ -26,11 +25,11 @@ module.exports = {
         } else {
             if (isEmpty(client.admin_role_id)) {
                 interaction.editReply({
-                    embeds: [new MessageEmbed().setDescription(`**Admin role haven't been set up yet, Go to** **index.js** **and Set it up.**`).setColor("#2a2152").setFooter({ text: "KeyAuth Redeem Bot v3.0.2"}).setTimestamp()],
+                    embeds: [new EmbedBuilder().setDescription(`**Admin role haven't been set up yet, Go to** **index.js** **and Set it up.**`).setColor(Colors.Red).setFooter({ text: "KeyAuth Redeem Bot v5.2.2" }).setTimestamp()],
                     ephemeral: true,
                 })
                 return false;
-            } 
+            }
             console.log("[RLOGS] Creating Logging Channel...");
 
 
@@ -50,7 +49,7 @@ module.exports = {
             });
 
             interaction.editReply({
-                embeds: [new MessageEmbed().setDescription(`**Okay, now the channel is created :) for <@&${client.admin_role_id}>**`).setColor("#2a2152").setFooter({ text: "KeyAuth Redeem Bot v3.0.2"}).setTimestamp()],
+                embeds: [new EmbedBuilder().setDescription(`**Okay, now the channel is created :) for <@&${client.admin_role_id}>**`).setColor(Colors.Red).setFooter({ text: "KeyAuth Redeem Bot v5.2.2" }).setTimestamp()],
                 ephemeral: true,
             });
         }
@@ -58,5 +57,5 @@ module.exports = {
 };
 
 function isEmpty(str) {
-    return (!str || str.length === 0 );
+    return (!str || str.length === 0);
 }

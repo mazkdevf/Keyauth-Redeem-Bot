@@ -1,7 +1,6 @@
-const { SlashCommandBuilder } = require("@discordjs/builders");
+const { SlashCommandBuilder, EmbedBuilder, Colors } = require("discord.js");
 const db = require('quick.db')
 const fetch = require('node-fetch')
-const Discord = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -25,10 +24,10 @@ module.exports = {
                 if (text == "Seller Key Successfully Found") {
                     db.fetch(`token_${interaction.guild.id}`)
                     db.set(`token_${interaction.guild.id}`, sellerkey)
-                    interaction.editReply({ embeds: [new Discord.MessageEmbed().setTitle('Seller Key Successfully Set!').setColor("GREEN").setTimestamp()], ephemeral: true })
+                    interaction.editReply({ embeds: [new EmbedBuilder().setTitle('Seller Key Successfully Set!').setColor(Colors.Green).setTimestamp()], ephemeral: true })
                 }
                 else {
-                    interaction.editReply({ embeds: [new Discord.MessageEmbed().setTitle('Seller Key Not Found!').addField("Where do I find seller key?", "In [Seller Settings](https://keyauth.win/dashboard/seller/settings/)").setColor("#2a2152").setTimestamp()], ephemeral: true })
+                    interaction.editReply({ embeds: [new EmbedBuilder().setTitle('Seller Key Not Found!').addField("Where do I find seller key?", "In [Seller Settings](https://keyauth.win/dashboard/seller/settings/)").setColor(Colors.Red).setTimestamp()], ephemeral: true })
                 }
             })
     },

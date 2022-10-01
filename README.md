@@ -1,4 +1,4 @@
-## KeyAuth Redeem Bot - V13
+## KeyAuth Redeem Bot - V14
 
 Created for application resellers/sellers so users can redeem licenses to get role or user and password from the key.
 
