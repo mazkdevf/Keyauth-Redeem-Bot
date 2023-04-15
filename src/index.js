@@ -19,8 +19,8 @@ let conf = {
 
 /// Client Setup ///
 client.domain = "win"; // KeyAuth Domain [win Currently]
-client.customer_id = "1096878072055205948"; // What user get when /redeem <key> have been used visit redeem.js if you want to add more roles.
-client.admin_role_id = "1096878072055205948"; // Admin Role id to /rlogs + to access logs channel.
+client.customer_id = ""; // What user get when /redeem <key> have been used visit redeem.js if you want to add more roles.
+client.admin_role_id = ""; // Admin Role id to /rlogs + to access logs channel.
 
 
 const commandFiles = fs.readdirSync("./commands").filter(file => file.endsWith(".js"))
