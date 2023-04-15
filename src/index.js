@@ -12,8 +12,8 @@ const client = new Client({
 
 /// Discord Token and Server - Guild ID ///
 let conf = {
-    token: "MTA5NTQ0ODU5OTkwODg0MzY1MA.GhWkDY.xE62Fo03fX7NR-rk0DDaRztac5ng7TDpZY0kyE", // Discord Bot Token (https://discord.com/developers/applications/)
-    GuildID: "1095448646104924361", // GuildID Where Bot will put commands.
+    token: "", // Discord Bot Token (https://discord.com/developers/applications/)
+    GuildID: "", // GuildID Where Bot will put commands.
 }
 
 
