@@ -38,7 +38,7 @@ client.on("error", console.error);
 
 client.once('ready', async () => {
     console.clear();
-   /*  await protyperxdd(logo(), 0); */
+    await protyperxdd(logo(), 0);
     sysTitle("KeyAuth Redeem Bot - Started | https://github.com/mazkdevf");
     console.log(`\x1b[33m[discord.js] \x1b[0mBot Started - ${client.user.tag}`)
 
