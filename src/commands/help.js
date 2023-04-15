@@ -13,9 +13,11 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setTitle('Redeem Help')
-            .addField('`redeem`', `Redeem a License. \nArgs: **${prefix}redeem**`, true)
-            .addField('`ruser`', `Redeem a Username + password from license \nArgs: **${prefix}ruser**`, true)
-            .addField('`rlogs`', `Enable Logging for redeems, / ye \nArgs: **${prefix}rlogs**`, false)
+            .addFields(
+                { name: '`redeem`', value: `Redeem a License. \nArgs: **${prefix}redeem**`, inline: true },
+                { name: '`ruser`', value: `Redeem a Username + password from license \nArgs: **${prefix}ruser**`, inline: true },
+                { name: '`rlogs`', value: `Enable Logging for redeems, / ye \nArgs: **${prefix}rlogs**`, inline: false },
+            )
             .setFooter({ text: "KeyAuth Redeem Bot v5.2.2" })
             .setTimestamp()
 

@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, Colors } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, Colors, PermissionsBitField, ChannelType } = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -33,17 +33,17 @@ module.exports = {
             console.log("[RLOGS] Creating Logging Channel...");
 
 
-            await interaction.guild.channels.create("PreBeta-Logs", {
-                type: "text",
+            await interaction.guild.channels.create({
+                name: 'PreBeta-Logs',
+                type: ChannelType.GuildText,
                 permissionOverwrites: [
                     {
                         id: client.admin_role_id,
-                        allow: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'READ_MESSAGE_HISTORY'],
-                        deny: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'READ_MESSAGE_HISTORY']
+                        allow: [PermissionsBitField.Flags.ViewChannel],
                     },
                     {
-                        id: interaction.guild.roles.everyone,
-                        deny: ['VIEW_CHANNEL'],
+                        id: interaction.user.id,
+                        deny: [PermissionsBitField.Flags.ViewChannel],
                     },
                 ],
             });

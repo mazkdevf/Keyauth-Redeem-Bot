@@ -1,6 +1,5 @@
 const fs = require("fs");
-const { REST } = require("@discordjs/rest");
-const { Client, GatewayIntentBits, ActivityType, Collection, EmbedBuilder, Routes, Partials, Colors } = require("discord.js");
+const { REST, Client, GatewayIntentBits, ActivityType, Collection, EmbedBuilder, Routes, Partials, Colors, Events } = require("discord.js");
 
 /// Discord Client Configuration ///
 const client = new Client({
@@ -13,15 +12,15 @@ const client = new Client({
 
 /// Discord Token and Server - Guild ID ///
 let conf = {
-    token: "", // Discord Bot Token (https://discord.com/developers/applications/)
-    GuildID: "", // GuildID Where Bot will put commands.
+    token: "MTA5NTQ0ODU5OTkwODg0MzY1MA.GhWkDY.xE62Fo03fX7NR-rk0DDaRztac5ng7TDpZY0kyE", // Discord Bot Token (https://discord.com/developers/applications/)
+    GuildID: "1095448646104924361", // GuildID Where Bot will put commands.
 }
 
 
 /// Client Setup ///
 client.domain = "win"; // KeyAuth Domain [win Currently]
-client.customer_id = ""; // What user get when /redeem <key> have been used visit redeem.js if you want to add more roles.
-client.admin_role_id = ""; // Admin Role id to /rlogs + to access logs channel.
+client.customer_id = "1096878072055205948"; // What user get when /redeem <key> have been used visit redeem.js if you want to add more roles.
+client.admin_role_id = "1096878072055205948"; // Admin Role id to /rlogs + to access logs channel.
 
 
 const commandFiles = fs.readdirSync("./commands").filter(file => file.endsWith(".js"))
@@ -39,15 +38,13 @@ client.on("error", console.error);
 
 client.once('ready', async () => {
     console.clear();
-    await protyperxdd(logo(), 0);
+   /*  await protyperxdd(logo(), 0); */
     sysTitle("KeyAuth Redeem Bot - Started | https://github.com/mazkdevf");
     console.log(`\x1b[33m[discord.js] \x1b[0mBot Started - ${client.user.tag}`)
 
     const CLIENT_ID = client.user.id;
 
-    const rest = new REST({
-        version: "9"
-    }).setToken(conf.token);
+    const rest = new REST({}).setToken(conf.token);
 
     (async () => {
         try {
@@ -71,7 +68,7 @@ client.once('ready', async () => {
 
 });
 
-client.on('interactionCreate', async interaction => {
+client.on(Events.InteractionCreate, async interaction => {
     if (!interaction.type === 2) return;
 
     const command = client.commands.get(interaction.commandName);

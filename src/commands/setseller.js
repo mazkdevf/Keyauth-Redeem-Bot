@@ -27,7 +27,11 @@ module.exports = {
                     interaction.editReply({ embeds: [new EmbedBuilder().setTitle('Seller Key Successfully Set!').setColor(Colors.Green).setTimestamp()], ephemeral: true })
                 }
                 else {
-                    interaction.editReply({ embeds: [new EmbedBuilder().setTitle('Seller Key Not Found!').addField("Where do I find seller key?", "In [Seller Settings](https://keyauth.win/dashboard/seller/settings/)").setColor(Colors.Red).setTimestamp()], ephemeral: true })
+                    interaction.editReply({ embeds: [new EmbedBuilder().setTitle('Seller Key Not Found!')
+                    .addFields(
+                        { name: 'Where do I find seller key?', value: "In [Seller Settings](https://keyauth.win/dashboard/seller/settings/)", inline: false }
+                    )
+                    .setColor(Colors.Red).setTimestamp()], ephemeral: true })
                 }
             })
     },

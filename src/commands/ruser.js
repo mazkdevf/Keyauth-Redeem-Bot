@@ -66,7 +66,13 @@ module.exports = {
 
                 if (channel) {
                     channel.send({
-                        embeds: [new EmbedBuilder().setAuthor({ name: "Wrong Key ALERT" }).addField('License:', "```" + `${key}` + "```", inline = false).addField('Discord:', "```" + interaction.member.user.username + "```", inline = true).addField('DiscordID:', "```" + interaction.member.user.id + "```", inline = true).setColor(Colors.Red).setFooter({ text: "KeyAuth Redeem Bot v5.2.2" }).setTimestamp()]
+                        embeds: [new EmbedBuilder().setAuthor({ name: "Wrong Key ALERT" })
+                        .addFields(
+                            { name: 'License:', value: "```" + `${key}` + "```", inline: false },
+                            { name: 'Discord:', value: "```" + interaction.member.user.username + "```", inline: true },
+                            { name: 'DiscordID:', value: "```" + interaction.member.user.id + "```", inline: true }
+                        )
+                        .setColor(Colors.Red).setFooter({ text: "KeyAuth Redeem Bot v5.2.2" }).setTimestamp()]
                     });
                 }
             }
@@ -94,7 +100,36 @@ module.exports = {
                                                 const channel = interaction.guild.channels.cache.find(channel => channel.name === 'prebeta-logs');
                                                 if (channel) {
                                                     channel.send({
-                                                        embeds: [new EmbedBuilder().setAuthor({ name: "License Redeemed" }).addField('License:', "```" + `${key}` + "```", false).addField('Username:', "```" + un + "```").addField('Password', "```" + pw + "```").addField('Discord:', "```" + interaction.member.user.username + "```", inline = true).addField('DiscordID:', "```" + interaction.member.user.id + "```", inline = true).setColor(Colors.Green).setFooter({ text: "KeyAuth Redeem Bot v5.2.2" }).setTimestamp()]
+                                                        embeds: [new EmbedBuilder()
+                                                            .setAuthor({ name: "License Redeemed" })
+                                                            .addFields(
+                                                                {
+                                                                    name: 'License',
+                                                                    value: "```" + `${key}` + "```",
+                                                                    inline: false
+                                                                },
+                                                                {
+                                                                    name: 'Username',
+                                                                    value: "```" + un + "```",
+                                                                    inline: false
+                                                                },
+                                                                {
+                                                                    name: 'Password',
+                                                                    value: "```" + pw + "```",
+                                                                    inline: false
+                                                                },
+                                                                {
+                                                                    name: 'Discord',
+                                                                    value: "```" + interaction.member.user.username + "```",
+                                                                    inline: true
+                                                                },
+                                                                {
+                                                                    name: 'DiscordID',
+                                                                    value: "```" + interaction.member.user.id + "```",
+                                                                    inline: true
+                                                                }
+                                                            )
+                                                            .setColor(Colors.Green).setFooter({ text: "KeyAuth Redeem Bot v5.2.2" }).setTimestamp()]
                                                     });
                                                 }
 
@@ -104,19 +139,81 @@ module.exports = {
                                                     });
 
                                                     interaction.member.send({
-                                                        embeds: [new EmbedBuilder().setTitle('License Successfully Activated!').setFooter({ text: "KeyAuth Redeem Bot v5.2.2" }).addField('Username:', "```" + un + "```").addField('Password', "```" + pw + "```").addField('License:', "```" + `${key}` + "```").addField('Expiry:', "```" + DaysFromLicense + " Days```").setColor(Colors.Green).setTimestamp()],
+                                                        embeds: [new EmbedBuilder().setTitle('License Successfully Activated!').setFooter({ text: "KeyAuth Redeem Bot v5.2.2" })
+                                                        .addFields(
+                                                            {
+                                                                name: 'License',
+                                                                value: "```" + `${key}` + "```",
+                                                                inline: false
+                                                            }, 
+                                                            {
+                                                                name: 'Username',
+                                                                value: "```" + un + "```",
+                                                                inline: false
+                                                            },
+                                                            {
+                                                                name: 'Expiry',
+                                                                value: "```" + DaysFromLicense + " Days```",
+                                                                inline: false
+                                                            },
+                                                            {
+                                                                name: 'Password',
+                                                                value: "```" + pw + "```",
+                                                                inline: false
+                                                            }
+                                                        )
+                                                        
+                                                        .setColor(Colors.Green).setTimestamp()],
                                                         ephemeral: true,
                                                     }).catch(error => {
                                                         if (error.code === 50007) {
                                                             interaction.editReply({
-                                                                embeds: [new EmbedBuilder().setAuthor({ name: "DMS Closed so i will give here. " }).setTitle('License Successfully Activated!').setFooter({ text: "KeyAuth Redeem Bot v5.2.2" }).addField('Username:', "```" + un + "```").addField('Password', "```" + pw + "```").addField('License:', "```" + `${key}` + "```").addField('Expiry:', "```" + DaysFromLicense + " Days```").setColor(Colors.Green).setTimestamp()],
+                                                                embeds: [new EmbedBuilder().setAuthor({ name: "DMS Closed so i will give here. " }).setTitle('License Successfully Activated!')
+                                                                .setFooter({ text: "KeyAuth Redeem Bot v5.2.2" })
+                                                                .addFields(
+                                                                    {
+                                                                        name: 'License',
+                                                                        value: "```" + `${key}` + "```",
+                                                                        inline: false
+                                                                    },
+                                                                    {
+                                                                        name: 'Username',
+                                                                        value: "```" + un + "```",
+                                                                        inline: false
+                                                                    },
+                                                                    {
+                                                                        name: 'License',
+                                                                        value: "```" + `${key}` + "```",
+                                                                        inline: false
+                                                                    },
+                                                                    {   
+                                                                        name: 'Password',
+                                                                        value: "```" + pw + "```",
+                                                                        inline: false
+                                                                    }
+
+                                                                )
+
+                                                                
+                                                                
+                                                                .setColor(Colors.Green).setTimestamp()],
                                                                 ephemeral: true,
                                                             });
                                                         }
                                                     });
                                                 } else {
                                                     interaction.editReply({
-                                                        embeds: [new EmbedBuilder().setTitle('License Successfully Activated!').setFooter({ text: "KeyAuth Redeem Bot v5.2.2" }).addField('Username:', "```" + un + "```").addField('Password', "```" + pw + "```").addField('License:', "```" + `${key}` + "```").addField('Expiry:', "```" + DaysFromLicense + " Days```").setColor(Colors.Green).setTimestamp()],
+                                                        embeds: [new EmbedBuilder().setTitle('License Successfully Activated!').setFooter({ text: "KeyAuth Redeem Bot v5.2.2" })
+                                                        .addFields(
+                                                            { name: 'Username', value: "```" + un + "```", inline: false },
+                                                            { name: 'Password', value: "```" + pw + "```", inline: false },
+                                                            { name: 'License', value: "```" + `${key}` + "```", inline: false },
+                                                            { name: 'Expiry', value: "```" + DaysFromLicense + " Days```", inline: false }
+                                                        )
+                                                        
+                                                        
+                                                        
+                                                        .setColor(Colors.Green).setTimestamp()],
                                                         ephemeral: true,
                                                     });
                                                 }

@@ -6,7 +6,7 @@
   "scripts": {
     "test": "/help"
   },
-  "author": "KeyAuth <https://github.com/keyauth> - mazk#9154 <https://github.com/mazkdevf>",
+  "author": "KeyAuth <https://github.com/keyauth> - mazkdevf <https://github.com/mazkdevf>",
   "license": "ISC",
   "keywords": [
     "discordjs",
@@ -14,9 +14,7 @@
     "keyauth"
   ],
   "dependencies": {
-    "@discordjs/rest": "^1.2.0",
-    "discord-api-types": "^0.36.2",
-    "discord.js": "^14.6.0",
+    "discord.js": "^14.9.0",
     "fs": "^0.0.1-security",
     "node-fetch": "^2.6.7",
     "quick.db": "^7.1.3"
