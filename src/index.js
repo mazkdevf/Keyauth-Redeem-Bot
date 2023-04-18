@@ -21,6 +21,7 @@ let conf = {
 client.domain = "win"; // KeyAuth Domain [win Currently]
 client.customer_id = ""; // What user get when /redeem <key> have been used visit redeem.js if you want to add more roles.
 client.admin_role_id = ""; // Admin Role id to /rlogs + to access logs channel.
+client.use_once = true; // only allow members to use a license key once. set to false if you'd like people to be able to use multiple times
 
 
 const commandFiles = fs.readdirSync("./commands").filter(file => file.endsWith(".js"))
@@ -78,7 +79,6 @@ client.on(Events.InteractionCreate, async interaction => {
     const ErrorEmbed = new EmbedBuilder()
         .setAuthor({ name: "Interaction Failed" })
         .setColor(Colors.Red)
-        .setTimestamp()
         .setFooter({ text: "KeyAuth Redeem Bot v5.2.2" })
 
     client.user.setPresence({

@@ -14,11 +14,33 @@ module.exports = {
         ),
 
     async execute(interaction, client) {
-
         let sellerkey = await db.get(`token_${interaction.guild.id}`)
-        if (sellerkey === null) return interaction.reply({ embeds: [new EmbedBuilder().setDescription(`Seller key haven't been set up yet!`).setColor(Colors.Red).setTimestamp()], ephemeral: true, });
+        if (sellerkey === null) return interaction.reply({ embeds: [new EmbedBuilder().setDescription(`Seller key haven't been set up yet!`).setColor(Colors.Red)], ephemeral: true, });
 
         let key = await interaction.options.getString("license")
+
+        if(client.use_once) {
+            if(db.fetch(`${key}`)) {
+                //Logs
+                const channel = interaction.guild.channels.cache.find(channel => channel.name === 'prebeta-logs');
+
+                if (channel) {
+                    channel.send({
+                        embeds: [new EmbedBuilder().setAuthor({ name: "License already redeemed!" })
+                        .addFields(
+                            { name: 'License:', value: "```" + `${key}` + "```", inline: false },
+                            { name: 'Discord:', value: "```" + interaction.member.user.username + "#" + interaction.member.user.discriminator + "```", inline: true },
+                            { name: 'DiscordID:', value: "```" + interaction.member.user.id + "```", inline: true },
+                        )
+                        
+                        
+                        .setColor(Colors.Red).setFooter({ text: "KeyAuth Redeem Bot v5.2.2" })]
+                    });
+                }
+
+                return interaction.reply({ embeds: [new EmbedBuilder().setDescription(`This key has already been redeemed!`).setColor(Colors.Red)], ephemeral: true, });
+            }
+        }
 
         await interaction.deferReply({ ephemeral: true });
 
@@ -49,7 +71,7 @@ module.exports = {
                         )
                         
                         
-                        .setColor(Colors.Red).setFooter({ text: "KeyAuth Redeem Bot v5.2.2" }).setTimestamp()]
+                        .setColor(Colors.Red).setFooter({ text: "KeyAuth Redeem Bot v5.2.2" })]
                     });
                 }
             }
@@ -65,17 +87,16 @@ module.exports = {
 
             if (role) {
                 //GIVE ROLE
-
-
                 try {
                     await interaction.guild.members.cache.get(interaction.member.id).roles.add(role);
                 } catch (err) {
                     console.log(err);
                 }
 
-
-
-                await interaction.guild.members.cache.get(interaction.member.id).roles.add(role);
+                if(client.use_once) {
+                    db.fetch(`${key}`)
+                    db.set(`${key}`, '1')
+                }
 
                 //REPLY
                 interaction.editReply({
@@ -96,7 +117,7 @@ module.exports = {
                         )
                         
                         
-                        .setColor(Colors.Green).setFooter({ text: "KeyAuth Redeem Bot v1.6.2" }).setTimestamp()],
+                        .setColor(Colors.Green).setFooter({ text: "KeyAuth Redeem Bot v1.6.2" })],
                         ephemeral: true,
                     });
                 }

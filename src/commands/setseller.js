@@ -24,14 +24,14 @@ module.exports = {
                 if (text == "Seller Key Successfully Found") {
                     db.fetch(`token_${interaction.guild.id}`)
                     db.set(`token_${interaction.guild.id}`, sellerkey)
-                    interaction.editReply({ embeds: [new EmbedBuilder().setTitle('Seller Key Successfully Set!').setColor(Colors.Green).setTimestamp()], ephemeral: true })
+                    interaction.editReply({ embeds: [new EmbedBuilder().setTitle('Seller Key Successfully Set!').setColor(Colors.Green)], ephemeral: true })
                 }
                 else {
                     interaction.editReply({ embeds: [new EmbedBuilder().setTitle('Seller Key Not Found!')
                     .addFields(
                         { name: 'Where do I find seller key?', value: "In [Seller Settings](https://keyauth.win/dashboard/seller/settings/)", inline: false }
                     )
-                    .setColor(Colors.Red).setTimestamp()], ephemeral: true })
+                    .setColor(Colors.Red)], ephemeral: true })
                 }
             })
     },
