@@ -25,7 +25,7 @@ module.exports = {
         } else {
             if (isEmpty(client.admin_role_id)) {
                 interaction.editReply({
-                    embeds: [new EmbedBuilder().setDescription(`**Admin role haven't been set up yet, Go to** **index.js** **and Set it up.**`).setColor(Colors.Red).setFooter({ text: "KeyAuth Redeem Bot v5.2.2" }).setTimestamp()],
+                    embeds: [new EmbedBuilder().setDescription(`**Admin role haven't been set up yet, Go to** **index.js** **and Set it up.**`).setColor(Colors.Red).setFooter({ text: "KeyAuth Redeem Bot v5.2.2" })],
                     ephemeral: true,
                 })
                 return false;
@@ -49,7 +49,7 @@ module.exports = {
             });
 
             interaction.editReply({
-                embeds: [new EmbedBuilder().setDescription(`**Okay, now the channel is created :) for <@&${client.admin_role_id}>**`).setColor(Colors.Red).setFooter({ text: "KeyAuth Redeem Bot v5.2.2" }).setTimestamp()],
+                embeds: [new EmbedBuilder().setDescription(`**Okay, now the channel is created :) for <@&${client.admin_role_id}>**`).setColor(Colors.Red).setFooter({ text: "KeyAuth Redeem Bot v5.2.2" })],
                 ephemeral: true,
             });
         }
